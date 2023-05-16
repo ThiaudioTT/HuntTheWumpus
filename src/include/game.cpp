@@ -1,6 +1,7 @@
 #include "game.hpp"
 
 
+
 Board::Board() {
     std::cout << "Board created!\n";
     constexpr int sizeCells = 6;
@@ -16,4 +17,39 @@ Board::Board() {
         cells.push_back(line);
     }
     
+}
+
+
+void Board::printBoard(){
+    for(int i = 0; i < cells.size(); i++) {
+        for(int j = 0; j < cells[i].size(); j++) {
+            std::cout << cells[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+}
+
+void Board::updateCell(int x, int y, int value) {
+    std::cout << "Updating cell (" << x << ", " << y << ") to " << value << "\n";
+    cells[x][y] = value;
+}
+
+Player::Player(Board &board, int _x, int _y) {
+    // todo: add preconditions
+    x = _x;
+    y = _y;
+
+    // ADD VERIFICATION IF cell is empty
+    // ADD VERIFICATION IF cell is not a pit
+    // ADD VERIFICATION IF cell is not a wumpus
+    // ADD VERIFICATION IF cell is not a bat
+
+    board.updateCell(x, y, definitions::PLAYER);
+    isAlive = true;
+}
+
+void Player::move(Board &board, int x, int y) {
+    x = x;
+    y = y;
+    board.updateCell(x, y, definitions::PLAYER);
 }
