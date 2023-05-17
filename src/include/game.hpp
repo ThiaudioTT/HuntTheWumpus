@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <iostream> // debug
+#include <ctime>
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -24,6 +25,9 @@ enum directions {
     DOWN = 2,
     LEFT = 3,
 };
+
+// UTILITY FUNCTIONS
+int randInt(int min, int max);
 
 class Board {
 private:
@@ -68,5 +72,20 @@ public:
      */
     bool move(int direction);
 };
+
+class Wumpus {
+private:
+    int i, j;
+    bool isAlive;
+    Board &board;
+public:
+    // define a option to set the position randomly
+
+    Wumpus(Board &_board, int _i, int _j);
+
+    // todo
+    void move();
+};
+
 
 #endif // GAME_HPP

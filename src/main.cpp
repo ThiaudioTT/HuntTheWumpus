@@ -9,6 +9,7 @@ int main()
     Board board;
 
     Player player(board, 1, 2);
+    Wumpus wumpus(board, 2, 2);
 
     int move = 1;
     while(true)

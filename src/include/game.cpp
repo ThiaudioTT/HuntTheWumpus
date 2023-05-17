@@ -1,6 +1,9 @@
 #include "game.hpp"
 
 
+int randInt(int min, int max) {
+    // todo
+}
 
 Board::Board() {
     std::cout << "Board created!\n";
@@ -81,8 +84,21 @@ bool Player::move(int direction) {
 
     x = nextX;
     y = nextY;
-    
+
     board.updateCell(x, y, definitions::PLAYER);
     board.updateCell(previousX, previousY, definitions::PASSAGE);
     return true;
+}
+
+Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
+    i = _x;
+    j = _y;
+
+    board.updateCell(i, j, definitions::WUMPUS);
+}
+
+
+void Wumpus::move() {
+    // add verification for case bats or pits
+    // todo
 }
