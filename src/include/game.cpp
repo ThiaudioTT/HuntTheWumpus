@@ -34,7 +34,7 @@ void Board::updateCell(int x, int y, int value) {
     cells[x][y] = value;
 }
 
-Player::Player(Board &board, int _x, int _y) {
+Player::Player(Board &_board, int _x, int _y) : board(_board) {
     // todo: add preconditions
     x = _x;
     y = _y;
@@ -48,7 +48,7 @@ Player::Player(Board &board, int _x, int _y) {
     isAlive = true;
 }
 
-void Player::move(Board &board, int x, int y) {
+void Player::move(int x, int y) {
     x = x;
     y = y;
     board.updateCell(x, y, definitions::PLAYER);

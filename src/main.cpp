@@ -19,7 +19,7 @@ int main()
         std::cin >> decision;
 
         // only testing movement
-        player.move(board, 2, move++);
+        player.move(2, move++);
 
         board.printBoard();
 

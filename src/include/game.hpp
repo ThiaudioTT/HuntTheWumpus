@@ -35,7 +35,7 @@ class Player {
 private:
     int x, y;
     bool isAlive;
-    // Board board; maybe this can be good?
+    Board &board;
 public:
 
     /**
@@ -43,9 +43,9 @@ public:
      * @param _x 
      * @param _y 
      */
-    Player(Board &board, int _x, int _y);
+    Player(Board &_board, int _x, int _y); // passing as reference could be better
 
-    void move(Board &board, int x, int y);
+    void move(int x, int y);
 };
 
 #endif // GAME_HPP
