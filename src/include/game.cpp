@@ -48,8 +48,29 @@ Player::Player(Board &_board, int _x, int _y) : board(_board) {
     isAlive = true;
 }
 
-void Player::move(int x, int y) {
-    x = x;
-    y = y;
-    board.updateCell(x, y, definitions::PLAYER);
+void Player::move(int direction) {
+    switch(direction) {
+        case directions::UP:
+            board.updateCell(x, y, definitions::PASSAGE);
+            x-=1;
+            board.updateCell(x, y, definitions::PLAYER);
+            break;
+        case directions::RIGHT:
+            board.updateCell(x, y, definitions::PASSAGE);
+            y+=1;
+            board.updateCell(x, y, definitions::PLAYER);
+            break;
+        case directions::DOWN:
+            board.updateCell(x, y, definitions::PASSAGE);
+            x+=1;
+            board.updateCell(x, y, definitions::PLAYER);
+            break;
+        case directions::LEFT:
+            board.updateCell(x, y, definitions::PASSAGE);
+            y-=1;
+            board.updateCell(x, y, definitions::PLAYER);
+            break;
+        default:
+            throw std::invalid_argument("Invalid direction");
+    }
 }
