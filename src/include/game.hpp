@@ -39,6 +39,8 @@ public:
 
     void updateCell(int x, int y, int value);
 
+    int getCell(int i, int j);
+
 };
 
 
@@ -62,8 +64,9 @@ public:
      * update the previous cell to empty
      * 
      * @param direction use the enum directions
+     * @returns bool if the movement was successful
      */
-    void move(int direction);
+    bool move(int direction);
 };
 
 #endif // GAME_HPP

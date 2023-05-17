@@ -34,6 +34,10 @@ void Board::updateCell(int x, int y, int value) {
     cells[x][y] = value;
 }
 
+int Board::getCell(int i, int j) {
+    return cells[i][j];
+}
+
 Player::Player(Board &_board, int _x, int _y) : board(_board) {
     // todo: add preconditions
     x = _x;
@@ -48,29 +52,37 @@ Player::Player(Board &_board, int _x, int _y) : board(_board) {
     isAlive = true;
 }
 
-void Player::move(int direction) {
+bool Player::move(int direction) {
+    const int previousX = x;
+    const int previousY = y;
+
+    int nextX = x;
+    int nextY = y;
     switch(direction) {
         case directions::UP:
-            board.updateCell(x, y, definitions::PASSAGE);
-            x-=1;
-            board.updateCell(x, y, definitions::PLAYER);
+            nextX-=1;
             break;
         case directions::RIGHT:
-            board.updateCell(x, y, definitions::PASSAGE);
-            y+=1;
-            board.updateCell(x, y, definitions::PLAYER);
+            nextY+=1;
             break;
         case directions::DOWN:
-            board.updateCell(x, y, definitions::PASSAGE);
-            x+=1;
-            board.updateCell(x, y, definitions::PLAYER);
+            nextX+=1;
             break;
         case directions::LEFT:
-            board.updateCell(x, y, definitions::PASSAGE);
-            y-=1;
-            board.updateCell(x, y, definitions::PLAYER);
+            nextY-=1;
             break;
         default:
             throw std::invalid_argument("Invalid direction");
     }
+
+    if(board.getCell(nextX, nextY) == definitions::EMPTY)
+        return false;
+  
+
+    x = nextX;
+    y = nextY;
+    
+    board.updateCell(x, y, definitions::PLAYER);
+    board.updateCell(previousX, previousY, definitions::PASSAGE);
+    return true;
 }
