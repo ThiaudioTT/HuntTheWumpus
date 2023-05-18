@@ -2,7 +2,8 @@
 
 
 int randInt(int min, int max) {
-    // todo
+    srand(time(NULL));
+    return rand() % (max - min + 1) + min;
 }
 
 Board::Board() {
@@ -100,5 +101,45 @@ Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
 
 void Wumpus::move() {
     // add verification for case bats or pits
-    // todo
+
+    // todo: search for the case when the wumpus is generated at the corner and have pits around them
+    // or refactor that
+    
+    int direction = randInt(0, 3);
+    int nextI = i;
+    int nextJ = j;
+
+    int nextCell = definitions::EMPTY;
+    while( 
+        nextCell == definitions::PIT ||
+        nextCell == definitions::EMPTY
+    )
+    {
+        nextI = i;
+        nextJ = j;
+        direction = randInt(0, 3);
+        switch(direction) {
+            case directions::UP:
+                nextI-=1;
+                break;
+            case directions::RIGHT:
+                nextJ+=1;
+                break;
+            case directions::DOWN:
+                nextI+=1;
+                break;
+            case directions::LEFT:
+                nextJ-=1;
+                break;
+            default:
+                throw std::invalid_argument("Invalid direction");
+        }
+
+        nextCell = board.getCell(nextI, nextJ);
+    }
+
+    board.updateCell(i, j, definitions::PASSAGE);
+    i = nextI;
+    j = nextJ;
+    board.updateCell(i, j, definitions::WUMPUS);
 }

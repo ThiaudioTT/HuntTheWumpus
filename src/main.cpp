@@ -22,7 +22,9 @@ int main()
         // only testing movement
         player.move(decision);
 
+        std::cout << "Some random int: " << randInt(0, 1) << "\n";
 
+        wumpus.move();
     }
     return 0;
 }

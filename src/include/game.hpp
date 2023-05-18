@@ -75,6 +75,7 @@ public:
 
 class Wumpus {
 private:
+    // todo: use struct to store the position
     int i, j;
     bool isAlive;
     Board &board;
