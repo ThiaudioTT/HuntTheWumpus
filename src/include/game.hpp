@@ -71,6 +71,8 @@ public:
      * @returns bool if the movement was successful
      */
     bool move(int direction);
+
+    bool isPlayerAlive() { return isAlive; }
 };
 
 class Wumpus {

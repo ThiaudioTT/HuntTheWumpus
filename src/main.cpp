@@ -1,30 +1,45 @@
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
+#include <limits>
 #include "./include/game.hpp"
 
 int main()
 {
-    std::cout << "Hello World!\n";
     Board board;
 
+    // for tests
     Player player(board, 1, 2);
     Wumpus wumpus(board, 2, 2);
 
-    int move = 1;
-    while(true)
+    while(player.isPlayerAlive())
     {
         board.printBoard();
-        std::cout << "For where? ";
-        int decision;
-        std::cin >> decision;
+        std::cout << '\n' << "Move or shoot?: ";
+        char direction;
+        std::cin >> direction;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore remaining characters in input buffer
+        std::cout << std::endl;
+        switch (direction)
+        {
+        case '8':
+            player.move(UP);
+            break;
+        case '6':
+            player.move(RIGHT);
+            break;
+        case '2':
+            player.move(DOWN);
+            break;
+        case '4':
+            player.move(LEFT);
+            break;
+        default:
+            std::cout << "Invalid move\n";
+            break;
+        }
 
-        // only testing movement
-        player.move(decision);
-
-        std::cout << "Some random int: " << randInt(0, 1) << "\n";
-
-        wumpus.move();
+        wumpus.move(); // tests
     }
     return 0;
 }
