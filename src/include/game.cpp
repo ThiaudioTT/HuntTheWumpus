@@ -143,3 +143,18 @@ void Wumpus::move() {
     j = nextJ;
     board.updateCell(i, j, definitions::WUMPUS);
 }
+
+
+Bats::Bats(Board &_board, int _x, int _y) : board(_board) {
+    i = _x;
+    j = _y;
+
+    board.updateCell(i, j, definitions::BAT);
+}
+
+Pit::Pit(Board &_board, int _x, int _y) : board(_board) {
+    i = _x;
+    j = _y;
+
+    board.updateCell(i, j, definitions::PIT);
+}

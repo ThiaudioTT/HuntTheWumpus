@@ -89,4 +89,20 @@ public:
 };
 
 
+class Bats {
+private:
+    int i, j;
+    Board &board;
+public:
+    Bats(Board &_board, int _i, int _j);
+};
+
+class Pit {
+private:
+    int i, j;
+    Board &board;
+public:
+    Pit(Board &_board, int _i, int _j);
+
+};
 #endif // GAME_HPP
