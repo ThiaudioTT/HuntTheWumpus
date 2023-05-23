@@ -22,16 +22,16 @@ int main()
         std::cout << std::endl;
         switch (direction)
         {
-        case '8':
+        case '5':
             player.move(UP);
             break;
-        case '6':
+        case '3':
             player.move(RIGHT);
             break;
         case '2':
             player.move(DOWN);
             break;
-        case '4':
+        case '1':
             player.move(LEFT);
             break;
         default:
