@@ -73,6 +73,8 @@ public:
     bool move(int direction);
 
     bool isPlayerAlive() { return isAlive; }
+
+    void killPlayer() { isAlive = false; }
 };
 
 class Wumpus {
@@ -80,14 +82,19 @@ private:
     // todo: use struct to store the position
     int i, j;
     bool isAlive;
+    bool foundPlayer;
     Board &board;
 public:
     // define a option to set the position randomly
 
     Wumpus(Board &_board, int _i, int _j);
 
+    bool isWumpusAlive() { return isAlive; }
+
     // todo
     void move();
+
+    bool wumpusFoundPlayer() { return foundPlayer; }
 };
 
 

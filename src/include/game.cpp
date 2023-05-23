@@ -148,6 +148,7 @@ void Wumpus::move() {
     }
 
     board.updateCell(i, j, definitions::PASSAGE);
+    foundPlayer = nextCell == definitions::PLAYER;
     i = nextI;
     j = nextJ;
     board.updateCell(i, j, definitions::WUMPUS);

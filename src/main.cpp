@@ -12,7 +12,7 @@ int main()
     Player player(board, 1, 2);
     Wumpus wumpus(board, 2, 2);
 
-    while(player.isPlayerAlive())
+    while(player.isPlayerAlive() && wumpus.isWumpusAlive())
     {
         board.printBoard();
         std::cout << '\n' << "Move or shoot?: ";
@@ -39,8 +39,14 @@ int main()
             break;
         }
 
+        // todo: Wumpus doesn't always move
         std::cout << "\nWumpus is moving...\n";
         wumpus.move(); // tests
+
+        if(wumpus.wumpusFoundPlayer()) {
+            std::cout << "Wumpus found you!\n";
+            player.killPlayer();
+        }
     }
 
     std::cout << "PLAYER IS FUNCKING DEAD!!!!\n";
