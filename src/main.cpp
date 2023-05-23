@@ -39,7 +39,10 @@ int main()
             break;
         }
 
+        std::cout << "\nWumpus is moving...\n";
         wumpus.move(); // tests
     }
+
+    std::cout << "PLAYER IS FUNCKING DEAD!!!!\n";
     return 0;
 }

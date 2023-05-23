@@ -34,7 +34,7 @@ void Board::printBoard(){
 }
 
 void Board::updateCell(int x, int y, int value) {
-    std::cout << "Updating cell (" << x << ", " << y << ") to " << value << "\n";
+    // std::cout << "Updating cell (" << x << ", " << y << ") to " << value << "\n";
     cells[x][y] = value;
 }
 
@@ -79,9 +79,18 @@ bool Player::move(int direction) {
             throw std::invalid_argument("Invalid direction");
     }
 
-    if(board.getCell(nextX, nextY) == definitions::EMPTY)
+    const int nextCell = board.getCell(nextX, nextY);
+    if(nextCell == definitions::EMPTY)
         return false;
-  
+    switch(nextCell){
+        case definitions::EMPTY:
+            return false;
+            break;
+        case definitions::WUMPUS:
+            isAlive = false;
+            return true;
+            break;
+    }
 
     x = nextX;
     y = nextY;
