@@ -7,12 +7,12 @@
 #define GAME_HPP
 
 enum definitions {
-    PIT = -1,
-    EMPTY = 0,
+    PIT = 0,
+    EMPTY = -5,
     PASSAGE = 1,
     BAT = 2,
     WUMPUS = 3,
-    PLAYER = 5,
+    PLAYER = 7,
 };
 
 /**
@@ -75,6 +75,14 @@ public:
     bool isPlayerAlive() { return isAlive; }
 
     void killPlayer() { isAlive = false; }
+
+    /**
+     * @brief shoots an arrow in a direction and return if the wumpus was killed 
+     * 
+     * @param direction 
+     * @return boolean
+     */
+    bool shoot(int direction);
 };
 
 class Wumpus {

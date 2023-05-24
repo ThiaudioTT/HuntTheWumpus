@@ -3,6 +3,16 @@
 #include <vector>
 #include <limits>
 #include "./include/game.hpp"
+#include <unordered_map>
+
+
+std::unordered_map<char, int> directions = { // translations of the keyboard
+    {'1', LEFT},
+    {'2', DOWN},
+    {'3', RIGHT},
+    {'5', UP},
+};
+
 
 int main()
 {
@@ -16,26 +26,42 @@ int main()
     {
         board.printBoard();
         std::cout << '\n' << "Move or shoot?: ";
+
+        bool isShootingMode = false;
+
         char direction;
         std::cin >> direction;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignore remaining characters in input buffer
         std::cout << std::endl;
+
+        if(direction == '6'){
+            isShootingMode = true;
+            std::cout << "Entering shooting mode...\n"
+                        << "Enter the direction you want to shoot: ";
+            std::cin >> direction;
+        }
+
+        // todo: refactor this
         switch (direction)
         {
         case '5':
-            player.move(UP);
+            if(isShootingMode) player.shoot(UP);
+            else player.move(UP);
             break;
         case '3':
-            player.move(RIGHT);
+            if(isShootingMode) player.shoot(RIGHT);
+            else player.move(RIGHT);
             break;
         case '2':
-            player.move(DOWN);
+            if(isShootingMode) player.shoot(DOWN);
+            else player.move(DOWN);
             break;
         case '1':
-            player.move(LEFT);
+            if(isShootingMode) player.shoot(LEFT);
+            else player.move(LEFT);
             break;
         default:
-            std::cout << "Invalid move\n";
+            std::cout << "Invalid direction\n";
             break;
         }
 

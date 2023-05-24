@@ -39,6 +39,8 @@ void Board::updateCell(int x, int y, int value) {
 }
 
 int Board::getCell(int i, int j) {
+    if(i < 0 || i >= cells.size() || j < 0 || j >= cells[i].size()) return -1;
+
     return cells[i][j];
 }
 
@@ -100,6 +102,35 @@ bool Player::move(int direction) {
     return true;
 }
 
+bool Player::shoot(int direction) {
+    int nextI = 0;
+    int nextJ = 0;
+
+    switch(direction) {
+        case directions::UP:
+            nextI = x - 1;
+            nextJ = y;
+            break;
+        case directions::RIGHT:
+            nextI = x;
+            nextJ = y + 1;
+            break;
+        case directions::DOWN:
+            nextI = x + 1;
+            nextJ = y;
+            break;
+        case directions::LEFT:
+            nextI = x;
+            nextJ = y - 1;
+            break;
+        default:
+            throw std::invalid_argument("Invalid direction");
+    }
+
+    if(board.getCell(nextI, nextJ) == definitions::WUMPUS) return true;
+    return false;
+}
+
 Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
     i = _x;
     j = _y;
@@ -109,6 +140,7 @@ Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
 
 
 void Wumpus::move() {
+    if(!isAlive) return;
     // add verification for case bats or pits
 
     // todo: search for the case when the wumpus is generated at the corner and have pits around them
