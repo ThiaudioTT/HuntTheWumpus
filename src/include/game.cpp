@@ -13,9 +13,9 @@ Board::Board() {
         std::vector<int> line;
         for(int j = 0; j < sizeCells; j++){
             if(i == 0 || i == sizeCells - 1 || j == 0 || j == sizeCells - 1) 
-                line.push_back(0);
+                line.push_back(definitions::EMPTY);
             else // Here is the board, indeed.
-                line.push_back(1);
+                line.push_back(definitions::PASSAGE);
         }
 
         cells.push_back(line);
@@ -134,6 +134,9 @@ bool Player::shoot(int direction) {
 Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
     i = _x;
     j = _y;
+
+    foundPlayer = false;
+    isAlive = true;
 
     board.updateCell(i, j, definitions::WUMPUS);
 }

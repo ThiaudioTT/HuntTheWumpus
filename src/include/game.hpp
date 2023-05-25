@@ -7,12 +7,12 @@
 #define GAME_HPP
 
 enum definitions {
-    PIT = 0,
-    EMPTY = -5,
-    PASSAGE = 1,
-    BAT = 2,
-    WUMPUS = 3,
-    PLAYER = 7,
+    EMPTY = 0,
+    PIT = 1,
+    PASSAGE = 2,
+    BAT = 3,
+    WUMPUS = 4,
+    PLAYER = 5,
 };
 
 /**
