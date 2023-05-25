@@ -74,17 +74,19 @@ int main()
             std::cout << "Invalid direction\n";
             break;
         }
+        
+        if(isShootingMode) {
+            if (isWumpusDeadByArrow)
+            {
+                std::cout << "You killed the Wumpus!\n";
+                wumpus.killWumpus();
+                break;
+            }
 
-        if (isShootingMode && isWumpusDeadByArrow)
-        {
-            std::cout << "You killed the Wumpus!\n";
-            wumpus.killWumpus();
-            break;
+            std::cout << "\nWumpus is moving...\n";
+            wumpus.move(); // tests
         }
 
-        // todo: Wumpus doesn't always move
-        std::cout << "\nWumpus is moving...\n";
-        wumpus.move(); // tests
 
         if (wumpus.wumpusFoundPlayer())
         {
