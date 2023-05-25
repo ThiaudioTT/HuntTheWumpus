@@ -103,6 +103,8 @@ public:
     void move();
 
     bool wumpusFoundPlayer() { return foundPlayer; }
+
+    void killWumpus() { isAlive = false; }
 };
 
 

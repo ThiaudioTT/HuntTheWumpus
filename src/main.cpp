@@ -41,27 +41,34 @@ int main()
             std::cin >> direction;
         }
 
+        bool isWumpusDeadByArrow = false;
         // todo: refactor this
         switch (direction)
         {
         case '5':
-            if(isShootingMode) player.shoot(UP);
+            if(isShootingMode) isWumpusDeadByArrow = player.shoot(UP);
             else player.move(UP);
             break;
         case '3':
-            if(isShootingMode) player.shoot(RIGHT);
+            if(isShootingMode) isWumpusDeadByArrow = player.shoot(RIGHT);
             else player.move(RIGHT);
             break;
         case '2':
-            if(isShootingMode) player.shoot(DOWN);
+            if(isShootingMode) isWumpusDeadByArrow = player.shoot(DOWN);
             else player.move(DOWN);
             break;
         case '1':
-            if(isShootingMode) player.shoot(LEFT);
+            if(isShootingMode) isWumpusDeadByArrow = player.shoot(LEFT);
             else player.move(LEFT);
             break;
         default:
             std::cout << "Invalid direction\n";
+            break;
+        }
+
+        if(isShootingMode && isWumpusDeadByArrow) {
+            std::cout << "You killed the Wumpus!\n";
+            wumpus.killWumpus();
             break;
         }
 
@@ -70,11 +77,11 @@ int main()
         wumpus.move(); // tests
 
         if(wumpus.wumpusFoundPlayer()) {
-            std::cout << "Wumpus found you!\n";
+            std::cout << "Wumpus found you!\n"
+                << "PLAYER IS FUNCKING DEAD!!!!\n";
             player.killPlayer();
         }
     }
 
-    std::cout << "PLAYER IS FUNCKING DEAD!!!!\n";
     return 0;
 }
