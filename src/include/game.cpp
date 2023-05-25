@@ -106,28 +106,40 @@ bool Player::shoot(int direction) {
     int nextI = 0;
     int nextJ = 0;
 
+    constexpr int arrowRange = 3;
+
     switch(direction) {
         case directions::UP:
-            nextI = x - 1;
-            nextJ = y;
+        // todo: search for better implementation
+            for(int i = 0; i < arrowRange; i++) {
+                nextI = x - 1;
+                if(board.getCell(nextI, y) == definitions::WUMPUS) return true;
+            }
             break;
         case directions::RIGHT:
-            nextI = x;
-            nextJ = y + 1;
+            for(int i = 0; i < arrowRange; i++) {
+                nextJ = y + 1;
+                if(board.getCell(x, nextJ) == definitions::WUMPUS) return true;
+            }
             break;
         case directions::DOWN:
             nextI = x + 1;
-            nextJ = y;
+            for(int i = 0; i < arrowRange; i++) {
+                nextI = x + 1;
+                if(board.getCell(nextI, y) == definitions::WUMPUS) return true;
+            }
             break;
         case directions::LEFT:
-            nextI = x;
             nextJ = y - 1;
+            for(int i = 0; i < arrowRange; i++) {
+                nextJ = y - i;
+                if(board.getCell(x, nextJ) == definitions::WUMPUS) return true;
+            }
             break;
         default:
             throw std::invalid_argument("Invalid direction");
     }
-
-    if(board.getCell(nextI, nextJ) == definitions::WUMPUS) return true;
+    
     return false;
 }
 
