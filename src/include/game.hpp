@@ -119,12 +119,12 @@ public:
 };
 
 
-class Bats {
+class Bat {
 private:
     int i, j;
     Board &board;
 public:
-    Bats(Board &_board, int _i, int _j);
+    Bat(Board &_board, int _i, int _j);
 };
 
 class Pit {

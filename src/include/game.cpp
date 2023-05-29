@@ -209,7 +209,7 @@ void Wumpus::move() {
 }
 
 
-Bats::Bats(Board &_board, int _x, int _y) : board(_board) {
+Bat::Bat(Board &_board, int _x, int _y) : board(_board) {
     i = _x;
     j = _y;
 
