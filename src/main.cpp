@@ -21,6 +21,8 @@ int main()
     Player player(board, 1, 2);
     Wumpus wumpus(board, 2, 2);
 
+    Pit pit(board, 3, 2);
+
     while (player.isPlayerAlive() && wumpus.isWumpusAlive())
     {
         board.printBoard();
@@ -75,11 +77,6 @@ int main()
             break;
         }
 
-        if(player.playerFoundWumpus()) {
-            std::cout << "You found the Wumpus!\n" << "Game over!\n";
-            break;
-        }
-        
         if(isShootingMode) {
             if (isWumpusDeadByArrow)
             {
@@ -90,6 +87,16 @@ int main()
 
             std::cout << "\nWumpus is moving...\n";
             wumpus.move(); // tests
+        }
+
+        if(player.playerFoundWumpus()) {
+            std::cout << "You found the Wumpus!\n" << "Game over!\n";
+            break;
+        }
+        
+        if(player.playerFoundPit()) {
+            std::cout << "You fell into a pit!\n" << "Game over!\n";
+            break;
         }
 
 

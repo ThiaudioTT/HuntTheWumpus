@@ -52,7 +52,11 @@ class Player {
 private:
     int x, y;
     bool isAlive;
+
+    // many vars to check if the player found something, refactor this?
     bool foundWumpus;
+    bool foundPit;
+    bool foundBat;
     Board &board;
 public:
 
@@ -76,6 +80,10 @@ public:
     bool isPlayerAlive() { return isAlive; }
 
     bool playerFoundWumpus() { return foundWumpus; }
+
+    bool playerFoundPit() { return foundPit; }
+
+    bool playerFoundBat() { return foundBat; }
 
     void killPlayer() { isAlive = false; }
 

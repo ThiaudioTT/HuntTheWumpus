@@ -57,6 +57,8 @@ Player::Player(Board &_board, int _x, int _y) : board(_board) {
     board.updateCell(x, y, definitions::PLAYER);
     isAlive = true;
     foundWumpus = false;
+    foundPit = false;
+    foundBat = false;
 }
 
 bool Player::move(int direction) {
@@ -92,6 +94,11 @@ bool Player::move(int direction) {
         case definitions::WUMPUS:
             isAlive = false;
             foundWumpus = true;
+            return true;
+            break;
+        case definitions::PIT:
+            isAlive = false;
+            foundPit = true;
             return true;
             break;
     }
@@ -213,5 +220,5 @@ Pit::Pit(Board &_board, int _x, int _y) : board(_board) {
     i = _x;
     j = _y;
 
-    board.updateCell(i, j, definitions::PIT);
+    board.updateCell(i, j, definitions::PIT); // todo: adds verification if cell is not empty or empty
 }
