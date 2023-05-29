@@ -74,6 +74,11 @@ int main()
             std::cout << "Invalid direction\n";
             break;
         }
+
+        if(player.playerFoundWumpus()) {
+            std::cout << "You found the Wumpus!\n" << "Game over!\n";
+            break;
+        }
         
         if(isShootingMode) {
             if (isWumpusDeadByArrow)

@@ -56,6 +56,7 @@ Player::Player(Board &_board, int _x, int _y) : board(_board) {
 
     board.updateCell(x, y, definitions::PLAYER);
     isAlive = true;
+    foundWumpus = false;
 }
 
 bool Player::move(int direction) {
@@ -90,6 +91,7 @@ bool Player::move(int direction) {
             break;
         case definitions::WUMPUS:
             isAlive = false;
+            foundWumpus = true;
             return true;
             break;
     }

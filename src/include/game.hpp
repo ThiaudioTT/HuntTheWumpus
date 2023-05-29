@@ -52,6 +52,7 @@ class Player {
 private:
     int x, y;
     bool isAlive;
+    bool foundWumpus;
     Board &board;
 public:
 
@@ -73,6 +74,8 @@ public:
     bool move(int direction);
 
     bool isPlayerAlive() { return isAlive; }
+
+    bool playerFoundWumpus() { return foundWumpus; }
 
     void killPlayer() { isAlive = false; }
 
