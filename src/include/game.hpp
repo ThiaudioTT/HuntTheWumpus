@@ -2,6 +2,9 @@
 #include <vector>
 #include <iostream> // debug
 #include <ctime>
+// #include <unistd.h>
+#include <chrono>
+#include <thread>
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -38,6 +41,12 @@ public:
      * @brief Construct a new Board object filling the cells
      */
     Board();
+
+    /**
+     * @brief Generate the dangers in the board
+     * 
+     */
+    void populateBoard();
 
     void printBoard();
 

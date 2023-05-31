@@ -21,7 +21,7 @@ int main()
     Player player(board, 1, 2);
     Wumpus wumpus(board, 2, 2);
 
-    Pit pit(board, 3, 2);
+    board.populateBoard();
 
     while (player.isPlayerAlive() && wumpus.isWumpusAlive())
     {

@@ -2,6 +2,7 @@
 
 
 int randInt(int min, int max) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     srand(time(NULL));
     return rand() % (max - min + 1) + min;
 }
@@ -23,6 +24,27 @@ Board::Board() {
     
 }
 
+void Board::populateBoard()
+{
+    for (int i = 0; i < cells.size(); i++)
+    {
+        for (int j = 0; j < cells[i].size(); j++)
+        {
+            const int cell = cells[i][j];
+            if (cell == definitions::EMPTY || cell == definitions::WUMPUS || cell == definitions::PLAYER)
+                continue;
+
+            const int random = randInt(0, 4); // 1/4 chance of being a pit or a bat
+            if (random == definitions::PIT || random == definitions::BAT)
+            {
+                if (random == definitions::PIT)
+                    updateCell(i, j, definitions::PIT);
+                else
+                    updateCell(i, j, definitions::BAT);
+            }
+        }
+    }
+}
 
 void Board::printBoard(){
     for(int i = 0; i < cells.size(); i++) {
