@@ -15,11 +15,18 @@ std::unordered_map<char, int> directions = {
 
 int main()
 {
+    srand(time(NULL));
+    std::cout << "Welcome to Hunt the Wumpus!\n"
+        << "Generating board...\n";
     Board board;
 
-    // for tests
-    Player player(board, 1, 2);
-    Wumpus wumpus(board, 2, 2);
+    std::cout << "Board generated!\n"
+        << "Generating player...\n";
+    Player player(board);
+
+    std::cout << "Player generated!\n"
+        << "Generating Wumpus...\n";
+    Wumpus wumpus(board);
 
     board.populateBoard();
 

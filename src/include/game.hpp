@@ -30,6 +30,14 @@ enum directions {
 };
 
 // UTILITY FUNCTIONS
+
+/**
+ * @brief Generate a random int
+ * 
+ * @param min 
+ * @param max 
+ * @return int 
+ */
 int randInt(int min, int max);
 
 class Board {
@@ -47,6 +55,10 @@ public:
      * 
      */
     void populateBoard();
+
+    int getBoardSize() { return cells.size(); }
+
+    int getLineSize(int i) { return cells[i].size(); }
 
     void printBoard();
 
@@ -75,6 +87,13 @@ public:
      * @param _y 
      */
     Player(Board &_board, int _x, int _y); // passing as reference could be better
+
+    /**
+     * @brief Construct a new Player object in a random position
+     * 
+     * @param _board 
+     */
+    Player(Board &_board);
 
 
     /**
@@ -117,6 +136,9 @@ public:
 
     Wumpus(Board &_board, int _i, int _j);
 
+    Wumpus(Board &_board);
+
+    
     bool isWumpusAlive() { return isAlive; }
 
     // todo

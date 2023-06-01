@@ -1,15 +1,12 @@
 #include "game.hpp"
 
-
 int randInt(int min, int max) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    srand(time(NULL));
     return rand() % (max - min + 1) + min;
 }
 
 Board::Board() {
     std::cout << "Board created!\n";
-    constexpr int sizeCells = 6;
+    constexpr int sizeCells = 9;
     for(int i = 0; i < sizeCells; i++) {
         std::vector<int> line;
         for(int j = 0; j < sizeCells; j++){
@@ -34,7 +31,7 @@ void Board::populateBoard()
             if (cell == definitions::EMPTY || cell == definitions::WUMPUS || cell == definitions::PLAYER)
                 continue;
 
-            const int random = randInt(0, 4); // 1/4 chance of being a pit or a bat
+            const int random = randInt(0, 6); // 1/6 chance of being a pit or a bat
             if (random == definitions::PIT || random == definitions::BAT)
             {
                 if (random == definitions::PIT)
@@ -81,6 +78,32 @@ Player::Player(Board &_board, int _x, int _y) : board(_board) {
     foundWumpus = false;
     foundPit = false;
     foundBat = false;
+}
+
+Player::Player(Board &_board) : board(_board) {
+
+    foundWumpus = false;
+    foundPit = false;
+    foundBat = false;
+
+    int positionI = randInt(1, board.getBoardSize() - 1);
+    int positionJ = randInt(1, board.getLineSize(positionI) - 1);
+    int nextCell = board.getCell(positionI, positionJ);
+    while(
+        nextCell == definitions::EMPTY ||
+        nextCell == definitions::PIT ||
+        nextCell == definitions::WUMPUS ||
+        nextCell == definitions::BAT
+    ) {
+        positionI = randInt(1, board.getBoardSize() - 1);
+        positionJ = randInt(1, board.getLineSize(positionI) - 1);
+        nextCell = board.getCell(positionI, positionJ);
+    }
+
+    x = positionI;
+    y = positionJ;
+    std::cout << "Player created at (" << x << ", " << y << ")\n";
+    board.updateCell(x, y, definitions::PLAYER);
 }
 
 bool Player::move(int direction) {
@@ -179,6 +202,29 @@ Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
     foundPlayer = false;
     isAlive = true;
 
+    board.updateCell(i, j, definitions::WUMPUS);
+}
+
+Wumpus::Wumpus(Board &_board): board(_board) {
+    foundPlayer = false;
+
+    int positionI = randInt(1, board.getBoardSize() - 1);
+    int positionJ = randInt(1, board.getLineSize(positionI) - 1);
+    int nextCell = board.getCell(positionI, positionJ);
+    while(
+        nextCell == definitions::EMPTY ||
+        nextCell == definitions::PIT ||
+        nextCell == definitions::PLAYER ||
+        nextCell == definitions::BAT
+    ) {
+        positionI = randInt(1, board.getBoardSize() - 1);
+        positionJ = randInt(1, board.getLineSize(positionI) - 1);
+        nextCell = board.getCell(positionI, positionJ);
+    }
+
+    i = positionI;
+    j = positionJ;
+    std::cout << "Wumpus created at (" << i << ", " << j << ")\n";
     board.updateCell(i, j, definitions::WUMPUS);
 }
 
