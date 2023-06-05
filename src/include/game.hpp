@@ -40,6 +40,8 @@ enum directions {
  */
 int randInt(int min, int max);
 
+
+
 class Board {
 private:
     std::vector<std::vector<int>> cells;
@@ -125,6 +127,10 @@ public:
 
 
     void teleport();
+
+
+    
+    std::vector<int> cellsAroundPlayer();
 };
 
 class Wumpus {
@@ -169,4 +175,10 @@ public:
     Pit(Board &_board, int _i, int _j);
 
 };
+
+/**
+ * @brief Output some dangers that is adjacent to the player
+ */
+void dangerSense(Player &player, Board &board);
+
 #endif // GAME_HPP

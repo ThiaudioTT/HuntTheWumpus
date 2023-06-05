@@ -32,6 +32,7 @@ int main()
 
     while (player.isPlayerAlive() && wumpus.isWumpusAlive())
     {
+        dangerSense(player, board);
         board.printBoard();
         std::cout << '\n'
                   << "Move or shoot?: ";

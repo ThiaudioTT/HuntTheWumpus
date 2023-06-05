@@ -4,6 +4,28 @@ int randInt(int min, int max) {
     return rand() % (max - min + 1) + min;
 }
 
+void dangerSense(Player &player, Board &board) {
+    std::vector<int> dangers = player.cellsAroundPlayer();
+    for(int i = 0; i < dangers.size(); i++)
+    {
+        const int danger = dangers[i];
+        switch (danger)
+        {
+            case definitions::PIT:
+                std::cout << "You feel a breeze.\n";
+                break;
+            case definitions::BAT:
+                std::cout << "You hear a flapping.\n";
+                break;
+            case definitions::WUMPUS:
+                std::cout << "You smell a wumpus.\n";
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 Board::Board() {
     std::cout << "Board created!\n";
     constexpr int sizeCells = 9;
@@ -213,6 +235,17 @@ void Player::teleport() {
     y = positionJ;
     board.updateCell(x, y, definitions::PLAYER);
     foundBat = false;
+}
+
+
+std::vector<int> Player::cellsAroundPlayer() {
+    std::vector<int> cellsAround;
+    return { // is this the best way to do this? Because I think this is the laziest one
+        board.getCell(x-1, y),
+        board.getCell(x, y+1),
+        board.getCell(x+1, y),
+        board.getCell(x, y-1)
+    };
 }
 
 Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
