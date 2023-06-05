@@ -146,6 +146,9 @@ bool Player::move(int direction) {
             foundPit = true;
             return true;
             break;
+        case definitions::BAT:
+            foundBat = true;
+            break;
     }
 
     x = nextX;
@@ -193,6 +196,23 @@ bool Player::shoot(int direction) {
     }
 
     return false;
+}
+
+void Player::teleport() {
+    int positionI = randInt(1, board.getBoardSize() - 1);
+    int positionJ = randInt(1, board.getLineSize(positionI) - 1);
+    int nextCell = board.getCell(positionI, positionJ);
+    while(nextCell == definitions::EMPTY || nextCell == definitions::PIT || nextCell == definitions::WUMPUS || nextCell == definitions::BAT) {
+        positionI = randInt(1, board.getBoardSize() - 1);
+        positionJ = randInt(1, board.getLineSize(positionI) - 1);
+        nextCell = board.getCell(positionI, positionJ);
+    }
+
+    board.updateCell(x, y, definitions::PASSAGE);
+    x = positionI;
+    y = positionJ;
+    board.updateCell(x, y, definitions::PLAYER);
+    foundBat = false;
 }
 
 Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {

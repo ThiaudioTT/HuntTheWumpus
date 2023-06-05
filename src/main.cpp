@@ -106,6 +106,11 @@ int main()
             break;
         }
 
+        if(player.playerFoundBat()) {
+            std::cout << "You were teleported by a bat!\n";
+            player.teleport();
+        }
+
 
         if (wumpus.wumpusFoundPlayer())
         {

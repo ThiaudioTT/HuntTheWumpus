@@ -122,6 +122,9 @@ public:
      * @return boolean
      */
     bool shoot(int direction);
+
+
+    void teleport();
 };
 
 class Wumpus {
