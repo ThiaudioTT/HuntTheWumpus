@@ -35,7 +35,7 @@ caves and to move around the bats and the wumpus. Hint: Be sure to have a way to
 In /src folder, run the following command:
 
 ```bash
-g++ -g main.cpp ./include/game.cpp -o /home/yuno/dev/HuntTheWumpus/src/HuntTheWumpus.o
+g++ -g main.cpp ./include/game.cpp -o HuntTheWumpus.o
 ```
 
 <img src="https://cdn.donmai.us/sample/f5/92/__komeiji_koishi_touhou_drawn_by_zunusama__sample-f5922bb6b259b5d4eb85c048b389a55c.jpg"
