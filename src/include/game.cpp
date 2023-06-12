@@ -124,7 +124,7 @@ Player::Player(Board &_board) : board(_board) {
 
     x = positionI;
     y = positionJ;
-    std::cout << "Player created at (" << x << ", " << y << ")\n";
+    // std::cout << "Player created at (" << x << ", " << y << ")\n";
     board.updateCell(x, y, definitions::PLAYER);
 }
 
@@ -278,7 +278,7 @@ Wumpus::Wumpus(Board &_board): board(_board) {
 
     i = positionI;
     j = positionJ;
-    std::cout << "Wumpus created at (" << i << ", " << j << ")\n";
+    // std::cout << "Wumpus created at (" << i << ", " << j << ")\n";
     board.updateCell(i, j, definitions::WUMPUS);
 }
 
