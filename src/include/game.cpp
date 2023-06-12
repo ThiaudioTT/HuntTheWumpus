@@ -259,6 +259,7 @@ Wumpus::Wumpus(Board &_board, int _x, int _y) : board(_board) {
 }
 
 Wumpus::Wumpus(Board &_board): board(_board) {
+    isAlive = true;
     foundPlayer = false;
 
     int positionI = randInt(1, board.getBoardSize() - 1);
@@ -283,7 +284,7 @@ Wumpus::Wumpus(Board &_board): board(_board) {
 
 
 void Wumpus::move() {
-    if(!isAlive) return;
+    if(!isAlive) throw std::invalid_argument("Wumpus is dead");
     // add verification for case bats or pits
 
     // todo: search for the case when the wumpus is generated at the corner and have pits around them

@@ -81,6 +81,7 @@ int main()
                 player.move(LEFT);
             break;
         default:
+            isShootingMode = false;
             std::cout << "Invalid direction\n";
             break;
         }
